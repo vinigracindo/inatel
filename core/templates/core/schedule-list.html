@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content-title %}
+Lista de Importações
+{% endblock %}
+
+{% block content %}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Data e Hora da Importação</th>
+            <th scope="col">Arquivo</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for schedule in schedules %}
+        <tr>
+            <td>{{ schedule.pk }}</td>
+            <td>{{ schedule.created_at }}</td>
+            <td>{{ schedule.file }}</td>
+            <td><a href="#">Visualizar dados do arquivo</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
