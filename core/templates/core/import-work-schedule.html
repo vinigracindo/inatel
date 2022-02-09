@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load bootstrap5 %}
+
+{% block content-title %}
+Importação da Escala de Reparo e Manutenção de Antenas
+{% endblock %}
+
+{% block content %}
+
+{% bootstrap_messages %}
+<form class="form" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row">
+        {% bootstrap_form form %}
+        <div class="col align-middle">
+            <button type="submit" class="btn btn-primary align-middle">
+                Importar Dados
+            </button>
+        </div>
+    </div>
+</form>
+{% endblock %}
