@@ -19,7 +19,7 @@
                 {% url 'core:import-work-schedule' as import_work_schedule %}
                 <a class="nav-link {% if request.path == import_work_schedule %}active{% endif %}" href="{{ import_work_schedule }}">
                     <span data-feather="database"></span>
-                    Importar Escala
+                    Importar Dados
                 </a>
             </li>
             <li class="nav-item">
@@ -27,12 +27,6 @@
                 <a class="nav-link {% if request.path == schedule_list or request.path == schedule_detail %}active{% endif %}" href="{{ schedule_list }}">
                     <span data-feather="list"></span>
                     Visualizar Importação
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <span data-feather="bar-chart-2"></span>
-                    Validar Dados
                 </a>
             </li>
             <li class="nav-item">

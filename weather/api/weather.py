@@ -18,7 +18,6 @@ class OpenWeatherMapAPI:
     def request(self, latitude, longitude):
         """Makes a request to the API."""
         url = self.__build_url(latitude, longitude)
-        print(url)
         try:
             response = requests.get(url)
             data = response.json()
