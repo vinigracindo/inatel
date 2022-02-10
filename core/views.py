@@ -6,7 +6,7 @@ from django.db import transaction
 
 from core.forms import ImportWorkScheduleForm
 from core.models import ScheduleWork, ScheduleWorkFile
-from core.utils import extract_and_validate_data_from_file
+from core.utils.get_data_file import extract_and_validate_data_from_file
 
 
 @csrf_exempt

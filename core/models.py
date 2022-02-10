@@ -1,6 +1,7 @@
-from datetime import datetime
-
+from tabnanny import verbose
 from django.db import models
+
+from core.utils.date import try_parsing_date
 
 
 class ScheduleWorkFile(models.Model):
@@ -15,6 +16,13 @@ class ScheduleWorkFile(models.Model):
     file = models.FileField(upload_to='imports')
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        verbose_name = 'Importação de escalas de trabalho'
+        verbose_name_plural = 'Importações de escalas de trabalho'
+
+    def __str__(self):
+        return str(self.file)
+
     def save_schedules(self, dataframe):
         schedules = []
 
@@ -22,7 +30,10 @@ class ScheduleWorkFile(models.Model):
             validated_dict = dataframe.loc[item].to_dict()
 
             date = '{} {}'.format(
-                validated_dict[ScheduleWorkFile.DATE], validated_dict[ScheduleWorkFile.TIME])
+                validated_dict[ScheduleWorkFile.DATE],
+                validated_dict[ScheduleWorkFile.TIME])
+
+            date = try_parsing_date(date)
 
             schedules.append(
                 ScheduleWork(
@@ -31,8 +42,7 @@ class ScheduleWorkFile(models.Model):
                     technician_register=str(
                         validated_dict[ScheduleWorkFile.REGISTRATION]),
                     description=validated_dict[ScheduleWorkFile.DESCRIPTION],
-                    date=datetime.strptime(date, "%d/%m/%Y %H:%M:%S")
-                )
+                    date=date)
             )
 
         ScheduleWork.objects.bulk_create(schedules)
@@ -45,3 +55,10 @@ class ScheduleWork(models.Model):
     description = models.TextField()
     date = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Escala de Trabalho'
+        verbose_name_plural = 'Escalas de Trabalho'
+
+    def __str__(self):
+        return str(self.pk)

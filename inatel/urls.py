@@ -5,6 +5,12 @@ from django.views.generic import TemplateView
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 
+
+admin.site.site_header = 'Inatel'
+admin.site.index_title = 'Página de Administração'
+admin.site.site_title = 'Inatel'
+
+
 urlpatterns = [
     path('', TemplateView.as_view(template_name='base.html'), name='index'),
     path('login/', auth_views.LoginView.as_view(template_name='login.html',
