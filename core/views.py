@@ -1,13 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
+from django.core import serializers
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
+from django.db import transaction
 
 from core.forms import ImportWorkScheduleForm
 from core.models import ScheduleWork, ScheduleWorkFile
-from core.utils import extract_data
+from core.utils import extract_and_validate_data_from_file
 
 
 @csrf_exempt
+@transaction.atomic
 def import_work_scheduling(request):
     context = {}
 
@@ -15,14 +18,16 @@ def import_work_scheduling(request):
         form = ImportWorkScheduleForm(request.POST, request.FILES)
         if form.is_valid():
             file = form.cleaned_data['file']
-            data = extract_data(file)
-            import_work = ScheduleWorkFile.objects.create(file=file)
-            for item in data.index:
-                informations = data.loc[item].to_json(force_ascii=False)
-                ScheduleWork.objects.create(
-                    file=import_work, informations=informations)
-            messages.add_message(request, messages.SUCCESS,
-                                 'Importação realizada com sucesso.')
+            try:
+                with transaction.atomic():
+                    data = extract_and_validate_data_from_file(file)
+                    import_work = ScheduleWorkFile.objects.create(file=file)
+                    import_work.save_schedules(data)
+
+                    messages.add_message(request, messages.SUCCESS,
+                                         'Importação realizada com sucesso.')
+            except Exception as err:
+                messages.add_message(request, messages.ERROR, err)
     else:
         form = ImportWorkScheduleForm()
 
@@ -31,5 +36,21 @@ def import_work_scheduling(request):
 
 
 def schedule_list(request):
-    schedules = ScheduleWorkFile.objects.all()
-    return render(request, 'core/schedule.html', {'schedules': schedules})
+    schedules = ScheduleWorkFile.objects.all().order_by('-created_at')
+    return render(request, 'core/schedule-list.html', {'schedules': schedules})
+
+
+def schedule_detail(request, schedule_pk):
+    schedule = get_object_or_404(ScheduleWorkFile, pk=schedule_pk)
+    schedules = serializers.serialize(
+        'json',
+        ScheduleWork.objects.filter(file=schedule),
+        fields=('technician_name', 'technician_register', 'description', 'date')
+    )
+
+    context = {
+        'schedule': schedule,
+        'schedules': schedules
+    }
+
+    return render(request, 'core/schedule-detail.html', context)

@@ -9,7 +9,7 @@ Lista de Importações
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th scope="col">#</th>
+            <th scope="col">ID</th>
             <th scope="col">Data e Hora da Importação</th>
             <th scope="col">Arquivo</th>
             <th scope="col">Ações</th>
@@ -20,8 +20,8 @@ Lista de Importações
         <tr>
             <td>{{ schedule.pk }}</td>
             <td>{{ schedule.created_at }}</td>
-            <td>{{ schedule.file }}</td>
-            <td><a href="#">Visualizar dados do arquivo</a></td>
+            <td><a href="{{ schedule.file.url }}">{{ schedule.file }}</a></td>
+            <td><a href="{% url 'core:schedule-detail' schedule.pk %}">Visualizar dados do arquivo</a></td>
         </tr>
         {% endfor %}
     </tbody>
