@@ -2,26 +2,30 @@
     <div class="position-sticky pt-3">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'index' %}">
+                {% url 'index' as index %}
+                <a class="nav-link {% if request.path == index %}active{% endif %}" aria-current="page" href="{{ index }}">
                     <span data-feather="home"></span>
                     Página Inicial
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'weather:index' %}">
-                    <span data-feather="file"></span>
-                    Dados API
+                {% url 'weather:index' as weather %}
+                <a class="nav-link {% if request.path == weather %}active{% endif %}" href="{{ weather }}">
+                    <span data-feather="cloud"></span>
+                    Clima (Dados API)
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'core:import-work-schedule' %}">
-                    <span data-feather="shopping-cart"></span>
-                    Importar Dados
+                {% url 'core:import-work-schedule' as import_work_schedule %}
+                <a class="nav-link {% if request.path == import_work_schedule %}active{% endif %}" href="{{ import_work_schedule }}">
+                    <span data-feather="database"></span>
+                    Importar Escala
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'core:schedule-list' %}">
-                    <span data-feather="users"></span>
+                {% url 'core:schedule-list' as schedule_list %}
+                <a class="nav-link {% if request.path == schedule_list or request.path == schedule_detail %}active{% endif %}" href="{{ schedule_list }}">
+                    <span data-feather="list"></span>
                     Visualizar Importação
                 </a>
             </li>

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content-title %}
+Detalhes da importação {{ schedule.pk }} realizado em {{ schedule.created_at }}
+{% endblock %}
+
+{% block extra-css %}
+<link rel="stylesheet" href="{% static 'css/pretty-print-json.css' %}">
+{% endblock %}
+
+{% block extra-js %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"
+        crossorigin="anonymous"></script>
+<script src="{% static 'js/pretty-print-json.min.js' %}"></script>
+
+<script>
+    var schedules = {{ schedules|safe }};
+    console.log(schedules);
+    $('#schedules').html(prettyPrintJson.toHtml(schedules));
+</script>
+{% endblock %}
+
+{% block content %}
+    <pre id="schedules"></pre>
+{% endblock %}
