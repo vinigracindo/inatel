@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'bootstrap5',
 
     # System-Apps
+    'logs',
     'core',
     'weather',
 ]
@@ -58,6 +59,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # App middlewares
+    'logs.middleware.LogMiddleware',
 ]
 
 ROOT_URLCONF = 'inatel.urls'
@@ -80,9 +84,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'inatel.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+
+DATABASE_ROUTERS = ('logs.dbrouter.LogDBRouter',)
 
 DATABASES = {
     'default': {
@@ -92,6 +97,14 @@ DATABASES = {
         'PASSWORD': os.environ.get('SQL_PASSWORD', 'password'),
         'HOST': os.environ.get('SQL_HOST', 'localhost'),
         'PORT': os.environ.get('SQL_PORT', '5432'),
+    },
+    'logs': {
+        'ENGINE': os.environ.get('SQL_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': os.environ.get('SQL_LOG_DATABASE', os.path.join(BASE_DIR, 'db.log.sqlite3')),
+        'USER': os.environ.get('SQL_LOG_USER', 'user'),
+        'PASSWORD': os.environ.get('SQL_LOG_PASSWORD', 'password'),
+        'HOST': os.environ.get('SQL_LOG_HOST', 'localhost'),
+        'PORT': os.environ.get('SQL_LOG_PORT', '5432'),
     }
 }
 

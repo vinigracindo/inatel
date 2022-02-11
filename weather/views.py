@@ -7,7 +7,6 @@ from weather.forms import WeatherForm
 
 
 def index(request):
-    #url = 'https://api.openweathermap.org/data/2.5/forecast?lat=-9.71369543637303&lon=-36.67114905746711&appid=6d56fbaae0f53bd1fa246a8860c8fb04&lang=pt_BR&units=metric'
     context = {}
 
     if request.method == 'POST':

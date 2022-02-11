@@ -1,9 +1,11 @@
-from django.test import TestCase
 from django.contrib.auth import get_user_model
 from django.shortcuts import resolve_url as r
 
+from core.tests.base import BaseTestCase as TestCase
+
 
 class LoginGet(TestCase):
+
     def setUp(self):
         self.response = self.client.get(r('login'))
 
