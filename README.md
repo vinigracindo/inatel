@@ -1,0 +1,2 @@
+# inatel
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/996071afbb5842d59d60880a9312360b)](https://app.codacy.com/gh/vinigracindo/inatel?utm_source=github.com&utm_medium=referral&utm_content=vinigracindo/inatel&utm_campaign=Badge_Grade_Settings)
