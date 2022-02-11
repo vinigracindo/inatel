@@ -35,4 +35,3 @@ volumes:
 
 networks:
   inatel-network:
-  
