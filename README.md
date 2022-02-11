@@ -66,11 +66,15 @@ pipenv install
 ```console
 pipenv run python manage.py migrate
 ```
-5. Crie um super usuário.
+5. Realize os testes.
+```console
+pipenv run python manage.py test
+```
+6. Crie um super usuário.
 ```console
 pipenv run python manage.py createsuperuser
 ```
-6. Inicie o servidor.
+7. Inicie o servidor.
 ```console
 pipenv run python manage.py runserver
 ```

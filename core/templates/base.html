@@ -47,6 +47,53 @@
                     <h1 class="h2">{% block content-title %}Bem-vindo {{ user.get_full_name }} {% endblock %}</h1>
                 </div>
                 {% block content %}
+                    <h4>Teste Técnico Inatel</h4>
+
+                    <h6>1. Criar uma interface gráfica para Login e Tela principal do sistema</h6>
+                    <p>
+                    --> http://localhost:8000/login/ e http://localhost:8000/
+                    </p>
+
+                    <h6>2. Tela de Login contendo os campos “usuário” e “senha” previamente cadastrados</h6>
+                    <p>
+                    --> http://localhost:8000/login/ <br />
+                    --> Usuário criado no momento do deploy com docker (admin/admin). 
+                    </p>
+
+                    <h6>3. Criar um botão que deverá consumir uma API pública (de sua escolha) e exibir os resultados na
+                        tela</h6>
+                    <p>
+                    --> Menu: Clima (Dados API). URL: http://localhost:8000/weather/<br />
+                    --> API que acessa o a previsão de clima pelos próximos 4 dias passando as coordenadas.
+                    </p>
+
+                    <h6>4. Criar um campo na tela para selecionar um arquivo dos tipos “.xlsx” ou “csv”</h6>
+                    <p>
+                    --> Menu: Importar Dados. URL: http://localhost:8000/core/schedule/import/ <br />
+                    --> Realiza Verificação de Tipos. Aceita apenas arquivos CSV e XLSX. <br />
+                    --> O arquivo é lido, verificado e retorna mensagem de erro caso encontre alguma inconsistência. <br />
+                    --> O arquivo inatel.csv na raiz do projeto é um modelo. <br />
+                    --> Os dados do arquivo são salvos nos models do módulo core.
+                    </p>
+
+                    <h6>5. Criar uma “view” com “serializers” para exibir dados dos arquivos em uma tela específica</h6>
+                    <p>
+                    --> Menu: Visualizar Importação. URL: http://localhost:8000/core/schedule/list/ <br />
+                    --> É listado todas as importação. Ao clicar na ação "Visualizar dados do arquivo" é mostrado os dados serializados.
+                    </p>
+
+                    <h6>6. Criar o Admin Panel para validação dos dados</h6>
+                    <p>
+                    --> Utilizei e customizei o próprio Admin do Django para visualizar os dados importados. <br />
+                    --> A validação ocorre de forma automática durante o upload do arquivos. Qualquer alteração de dado pode ser realizado no Admin. <br />
+                    --> http://localhost:8000/admin
+                    </p>
+
+                    <h6>7. Criar Logs de histórico de tudo que for realizado no sistema</h6>
+                    <p>
+                    --> middleware localizado em logs/middeware.py <br />
+                    --> É salvo em outro banco de dados como pode ser visto no arquivo .env.example
+                    </p>
                 {% endblock %}
             </main>
         </div>
