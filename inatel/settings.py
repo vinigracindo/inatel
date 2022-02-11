@@ -31,7 +31,7 @@ WEATHER_API_KEY = os.environ.get('WEATHER_API_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = int(os.environ.get('DEBUG', default=0))
 
-ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', default=[]).split(';')
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -101,7 +101,7 @@ DATABASES = {
         'PORT': os.environ.get('SQL_PORT', '5432'),
     },
     'logs': {
-        'ENGINE': os.environ.get('SQL_ENGINE', 'django.db.backends.sqlite3'),
+        'ENGINE': os.environ.get('SQL_LOG_ENGINE', 'django.db.backends.sqlite3'),
         'NAME': os.environ.get('SQL_LOG_DATABASE', os.path.join(BASE_DIR, 'db.log.sqlite3')),
         'USER': os.environ.get('SQL_LOG_USER', 'user'),
         'PASSWORD': os.environ.get('SQL_LOG_PASSWORD', 'password'),
@@ -148,6 +148,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
