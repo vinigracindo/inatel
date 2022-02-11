@@ -22,12 +22,17 @@ cd inatel
 cp .env.example .env
 ```
 
-3. Execute o docker-composer
+3. Dê permissão de chmod para o arquivo .docker/entrypoint.sh
+```console
+chmod +x .docker/entrypoint.sh
+```
+
+4. Execute o docker-composer
 ```console
 docker-compose up -d
 ```
 
-4. Acesse na porta 8000. Usuário: admin, Senha: admin
+5. Acesse na porta 8000. Usuário: admin, Senha: admin
 ```console
 http://localhost:8000
 ```
