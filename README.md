@@ -17,9 +17,19 @@ git clone https://github.com/vinigracindo/inatel.git inatel
 cd inatel
 ```
 
-2. Execute o docker-composer
+2. Crie um arquivo .env de configuração.
+```console
+cp .env.example .env
+```
+
+3. Execute o docker-composer
 ```console
 docker-compose up -d
+```
+
+4. Acesse na porta 8000. Usuário: admin, Senha: admin
+```console
+http://localhost:8000
 ```
 
 ## Como desenvolver?
