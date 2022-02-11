@@ -16,12 +16,12 @@ class ScheduleWorkFile(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        """"ScheduleWorkFile Meta"""
+        """"ScheduleWorkFile Meta."""
         verbose_name = 'Importação de escalas de trabalho'
         verbose_name_plural = 'Importações de escalas de trabalho'
 
     def __str__(self):
-        """ScheduleWorkFile string representation"""
+        """ScheduleWorkFile string representation."""
         return str(self.file)
 
     def save_schedules(self, dataframe):
@@ -58,10 +58,10 @@ class ScheduleWork(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        """"ScheduleWork Meta"""
+        """"ScheduleWork Meta."""
         verbose_name = 'Escala de Trabalho'
         verbose_name_plural = 'Escalas de Trabalho'
 
     def __str__(self):
-        """ScheduleWork string representation"""
+        """ScheduleWork string representation."""
         return str(self.pk)

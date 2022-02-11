@@ -22,10 +22,7 @@ class LoginGet(TestCase):
         self.assertContains(self.response, 'csrfmiddlewaretoken')
 
     def test_html(self):
-        """
-        HTML must contains username, password and CSRF fields.
-        Must contains submit button and form method post
-        """
+        """HTML must contains username, password and CSRF fields."""
         tags = (
             ('<form', 1),
             ('<input', 3),

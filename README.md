@@ -11,8 +11,14 @@
 4. PostgresSQL >= 9.4
 
 ## Como fazer deploy via docker?
+1. Clone o repositório.
 ```console
+git clone https://github.com/vinigracindo/inatel.git inatel
 cd inatel
+```
+
+2. Execute o docker-composer
+```console
 docker-compose up -d
 ```
 

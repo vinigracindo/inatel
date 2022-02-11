@@ -6,7 +6,7 @@ from logs.models import Log
 
 
 @login_required
-def list(request):
+def list_logs(request):
     logs = Log.objects.all().using('logs').order_by('-date')
     return render(request, 'logs/list.html', {'logs': logs})
 
