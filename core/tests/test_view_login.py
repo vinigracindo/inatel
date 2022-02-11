@@ -22,7 +22,8 @@ class LoginGet(TestCase):
         self.assertContains(self.response, 'csrfmiddlewaretoken')
 
     def test_html(self):
-        """HTML must contains username, password and CSRF fields.
+        """
+        HTML must contains username, password and CSRF fields.
         Must contains submit button and form method post
         """
         tags = (
@@ -39,7 +40,7 @@ class LoginGet(TestCase):
                 self.assertContains(self.response, tag, count)
 
     def test_form_has_fields(self):
-        """form must have 2 fields (username and password)"""
+        """form must have 2 fields (username and password)."""
         form = self.response.context['form']
         self.assertSequenceEqual(['username', 'password'], list(form.fields))
 
@@ -51,11 +52,11 @@ class LoginPost(TestCase):
         self.response = self.client.post(r('login'), data)
 
     def test_post(self):
-        """POST /login/ must return 302 status code (redirect after success login)"""
+        """POST /login/ must return 302 status code (redirect after success login)."""
         self.assertEqual(302, self.response.status_code)
 
     def test_user_is_auth(self):
-        """Must have a session after success login"""
+        """Must have a session after success login."""
         session = self.response.wsgi_request.session
         self.assertIn('_auth_user_id', session)
 
@@ -66,7 +67,7 @@ class LoginInvalidPost(TestCase):
         self.response = self.client.post(r('login'), data)
 
     def test_invalid_user_post(self):
-        """Invalid Post should not redirect"""
+        """Invalid Post should not redirect."""
         self.assertEqual(200, self.response.status_code)
 
     def test_html(self):
