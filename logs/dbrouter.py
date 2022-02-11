@@ -5,13 +5,13 @@ class LogDBRouter:
     route_app_labels = {'logs'}
 
     def db_for_read(self, model, **hints):
-        """ reading Log from logs database. """
+        """reading Log from logs database."""
         if model == Log:
             return 'logs'
         return None
 
     def db_for_write(self, model, **hints):
-        """ writing Log to logs database. """
+        """writing Log to logs database."""
         if model == LogDBRouter:
             return 'logs'
         return None

@@ -72,7 +72,7 @@ class IndexPost(TestCase):
         self.assertEqual(200, self.response.status_code)
 
     def test_template(self):
-        """Must use weather/index.html"""
+        """Must use weather/index.html."""
         self.assertTemplateUsed(self.response, 'weather/index.html')
 
 
