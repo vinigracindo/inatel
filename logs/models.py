@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 
 
 class Log(models.Model):
@@ -16,3 +17,9 @@ class Log(models.Model):
     date = models.DateTimeField(auto_now=True)
     body_response = models.TextField()
     body_request = models.TextField()
+
+    def get_user_object(self):
+        try:
+            return get_user_model().objects.get(pk=self.user_id)
+        except get_user_model().DoesNotExist:
+            return 'Usuário anônimo'
