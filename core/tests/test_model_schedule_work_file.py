@@ -1,8 +1,5 @@
 import datetime
 
-from django.utils import timezone
-from django.contrib.auth import get_user_model
-
 from core.tests.base import BaseTestCase as TestCase
 from core.models import ScheduleWorkFile
 
