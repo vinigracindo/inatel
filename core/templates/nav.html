@@ -30,7 +30,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                {% url 'logs:list' as logs_list %}
+                <a class="nav-link {% if request.path == logs_list %}active{% endif %}" href="{{ logs_list }}">
                     <span data-feather="layers"></span>
                     Logs
                 </a>

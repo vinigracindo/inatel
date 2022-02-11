@@ -9,6 +9,7 @@ django-bootstrap-v5 = "1.0.10"
 requests = "2.27.1"
 pandas = "*"
 openpyxl = "*"
+coverage = "*"
 
 [dev-packages]
 autopep8 = "1.6.0"

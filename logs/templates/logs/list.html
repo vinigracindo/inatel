@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content-title %}
+Logs
+{% endblock %}
+
+{% block content %}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Endpoint</th>
+            <th scope="col">ID do Usuário</th>
+            <th scope="col">Response Code</th>
+            <th scope="col">Método</th>
+            <th scope="col">IP</th>
+            <th scope="col">Data</th>
+            <th scope="col">Tempo de Execução</th>
+            <th scope="col">Visualizar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for log in logs %}
+        <tr>
+            <td style="word-wrap: break-word;min-width: 360px;max-width: 360px;">{{ log.endpoint|truncatechars:100 }}</td>
+            <td>{{ log.get_user_object }}</td>
+            <td>{{ log.response_code }}</td>
+            <td>{{ log.method }}</td>
+            <td>{{ log.remote_address }}</td>
+            <td>{{ log.date }}</td>
+            <td>{{ log.exec_time }} ms</td>
+            <td><a href="{% url 'logs:view_reqres' log.pk %}" target="_blank">Request e Response</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

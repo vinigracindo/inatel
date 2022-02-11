@@ -11,6 +11,7 @@ from weather.api.weather import OpenWeatherMapAPI
 
 class IndexGet(TestCase):
     def setUp(self):
+        super(IndexGet, self).setUp()
         self.response = self.client.get(r('weather:index'))
 
     def test_get(self):
@@ -60,6 +61,7 @@ mock_class.request = MagicMock(
 class IndexPost(TestCase):
     @patch("weather.api.weather.OpenWeatherMapAPI.request", mock_class.request)
     def setUp(self):
+        super(IndexPost, self).setUp()
         data = dict(
             lat='1234',
             lon='1234'
@@ -81,6 +83,7 @@ mock_class.request = MagicMock(
 class IndexInvalidPost(TestCase):
     @patch("weather.api.weather.OpenWeatherMapAPI.request", mock_class.request)
     def setUp(self):
+        super(IndexInvalidPost, self).setUp()
         data = dict(
             lat='wrong_value',
             lon='wrong_value'

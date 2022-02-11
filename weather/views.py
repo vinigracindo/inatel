@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.conf import settings
 
 from weather.api.weather import OpenWeatherMapAPI
 from weather.forms import WeatherForm
 
 
+@login_required
 def index(request):
     context = {}
 

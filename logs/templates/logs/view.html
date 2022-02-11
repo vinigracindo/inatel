@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content-title %}
+Visualizando detalhes do log
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <h2>Request</h2>
+    <div id="col">
+        {{ log.body_request }}
+    </div>
+</div>
+
+<div class="row">
+    <h2>Response</h2>
+    <div id="col">
+        {{ log.body_response }}
+    </div>
+</div>
+
+{% endblock %}
